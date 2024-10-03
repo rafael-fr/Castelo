@@ -31,6 +31,12 @@ void setup()
   
   wtv020sd16p.asyncPlayVoice(0);
 
+  
+}
+
+void loop() {
+  wtv020sd16p.asyncPlayVoice(0);
+  delay(10);
   for (int n = 0; n < nFrames; n++) 
   {
     int anguloBoca = frames[n][0];
@@ -45,8 +51,5 @@ void setup()
     // Aguarde um tempo (opcional) para que os servos alcancem as posições
     delay(30);
   }
-}
-
-void loop() {
-  // Seu código principal aqui (se necessário)
+  delay(10);
 }
