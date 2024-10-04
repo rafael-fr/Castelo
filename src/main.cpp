@@ -1,6 +1,9 @@
 #include <Arduino.h>
 #include <Servo.h>
 #include <WTV020SD16P.h>
+// #include <celeste.h>
+// #include <porteiro.h>
+#include <gato.h>
 
 // Defina os pinos para os servos
 const int pinOlho = 9;
@@ -19,8 +22,7 @@ static const uint8_t busyPin = 5; // The pin number of the busy pin.
 
 WTV020SD16P wtv020sd16p(resetPin, clockPin,dataPin,busyPin);
 
-int nFrames = 500;
-int frames[500][3] = {0,0,0};
+
 
 void setup() 
 {
@@ -39,9 +41,9 @@ void loop() {
   delay(10);
   for (int n = 0; n < nFrames; n++) 
   {
-    int anguloBoca = frames[n][0];
-    int anguloOlho = frames[n][1];
-    int anguloPescoco = frames[n][2];
+    int anguloBoca = pgm_read_word(&frames[n][0]);
+    int anguloOlho = pgm_read_word(&frames[n][1]);
+    int anguloPescoco = pgm_read_word(&frames[n][2]);
 
     // Mova os servos para as posições corretas
     boca.write(anguloBoca);
