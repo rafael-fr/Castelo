@@ -1,4 +1,4 @@
 #include <Arduino.h>
 
-int nFrames = 1000;
-const int frames[1000][3] PROGMEM = {0,0,0};
+int nFrames = 4500;
+const int frames[4500][3] PROGMEM = {0,0,0};
