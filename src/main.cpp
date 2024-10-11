@@ -1,43 +1,49 @@
 #include <Arduino.h>
 #include <Servo.h>
 #include <WTV020SD16P.h>
+
 // #include <porteiro/porteiro1.h>
 // #include <porteiro/porteiro2.h>
 // #include <porteiro/porteiro3.h>
 // #include <porteiro/porteiro4.h>
 // #include <porteiro/porteiro5.h>
 // #include <porteiro/porteiro6.h>
-// Defina os pinos para os servos
+// // // Defina os pinos para os servos
 // const int pinOlho = 9;     //porteiro 
 // const int pinBoca = 11;    //porteiro 
 // const int pinPescoco = 10; //porteiro 
 
+// const int angulos_default[3] = {50,90,90};
 
-// #include <gato/gato1.h>
-// #include <gato/gato2.h>
-// #include <gato/gato3.h>
-// #include <gato/gato4.h>
-// #include <gato/gato5.h>
-
-// // Defina os pinos para os servos
-// const int pinOlho = 10;     //gato 
-// const int pinBoca = 9;      //gato 
-// const int pinPescoco = 11;  //gato 
-
-#include <celeste/celeste1.h>
-#include <celeste/celeste2.h>
-#include <celeste/celeste3.h>
-#include <celeste/celeste4.h>
-#include <celeste/celeste5.h>
+#include <gato/gato1.h>
+#include <gato/gato2.h>
+#include <gato/gato3.h>
+#include <gato/gato4.h>
+#include <gato/gato5.h>
 
 // Defina os pinos para os servos
-const int pinOlho = 10;     //celeste
-const int pinBoca = 9;      //celeste
-const int pinPescoco = 11;  //celeste
+const int pinOlho = 10;     //gato 
+const int pinBoca = 9;      //gato 
+const int pinPescoco = 11;  //gato 
+
+const int angulos_default[3] = {60,87,90};
+
+
+// #include <celeste/celeste1.h>
+// #include <celeste/celeste2.h>
+// #include <celeste/celeste3.h>
+// #include <celeste/celeste4.h>
+// #include <celeste/celeste5.h>
+
+// // Defina os pinos para os servos
+// const int pinOlho = 10;     //celeste
+// const int pinBoca = 9;      //celeste
+// const int pinPescoco = 11;  //celeste
+
+// const int angulos_default[3] = {50,90,80};
 
 const int num_cena = 5;
 const int delay_cena = 15000;
-const int angulos_default[3] = {50,90,90};
 
 Servo olho;
 Servo boca;
@@ -62,8 +68,8 @@ int anguloPescoco = angulos_default[2];
 void setup() 
 {
   wtv020sd16p.reset();
-  Serial.begin(9600);
-  Serial.println("Inicializando");
+//   Serial.begin(9600);
+//   Serial.println("Inicializando");
   delay(1000);
   wtv020sd16p.asyncPlayVoice(0);
   // Inicialize os servos
@@ -71,9 +77,9 @@ void setup()
   boca.attach(pinBoca);
   pescoco.attach(pinPescoco);
   delay(10);
-  boca.write(35); // celeste 35  fechado 75 aberto              |  Gato 60  fechado 100 aberto             |  Porteiro: 50 fechado 80 aberto
-  olho.write(70);  //celeste 110 fechado 70 aberto              |  Gato 121 fechado 87 aberto              |  Porteiro:85 aberto 130 fechado
-  pescoco.write(85); // celeste 60  esquerda 110 direita 85 centro | Gato 45  esquerda 125 direita 80 centro  |  Porteiro:50 esquerda 130 direita 90 centro
+  boca.write(angulos_default[0]);    // celeste 35  fechado 75 aberto              |  Gato 60  fechado 100 aberto             |  Porteiro: 50 fechado 80 aberto
+  olho.write(angulos_default[1]);     //celeste 110 fechado 70 aberto              |  Gato 121 fechado 87 aberto              |  Porteiro:85 aberto 130 fechado
+  pescoco.write(angulos_default[2]); // celeste 60  esquerda 110 direita 85 centro | Gato 45  esquerda 125 direita 80 centro  |  Porteiro:50 esquerda 130 direita 90 centro
   delay(5000);
   
 }
@@ -166,13 +172,13 @@ void loop() {
             delay(millis_frames);
         }
         
-        Serial.println(millis()-t);
-        Serial.print("Scene: ");
-        Serial.print(cena);
-        Serial.print(" - frames: ");
-        Serial.print(n);
-        Serial.print(" - Millis: ");
-        Serial.println(millis_frames);
+        // Serial.println(millis()-t);
+        // Serial.print("Scene: ");
+        // Serial.print(cena);
+        // Serial.print(" - frames: ");
+        // Serial.print(n);
+        // Serial.print(" - Millis: ");
+        // Serial.println(millis_frames);
         delay(1000);
         wtv020sd16p.asyncPlayVoice(0);
         delay(delay_cena);
