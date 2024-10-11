@@ -1,19 +1,43 @@
 #include <Arduino.h>
 #include <Servo.h>
 #include <WTV020SD16P.h>
-// #include <celeste.h>
-// #include <porteiro.h>
-#include <porteiro/porteiro1.h>
-#include <porteiro/porteiro2.h>
-#include <porteiro/porteiro3.h>
-#include <porteiro/porteiro4.h>
-#include <porteiro/porteiro5.h>
-#include <porteiro/porteiro6.h>
+// #include <porteiro/porteiro1.h>
+// #include <porteiro/porteiro2.h>
+// #include <porteiro/porteiro3.h>
+// #include <porteiro/porteiro4.h>
+// #include <porteiro/porteiro5.h>
+// #include <porteiro/porteiro6.h>
+// Defina os pinos para os servos
+// const int pinOlho = 9;     //porteiro 
+// const int pinBoca = 11;    //porteiro 
+// const int pinPescoco = 10; //porteiro 
+
+
+// #include <gato/gato1.h>
+// #include <gato/gato2.h>
+// #include <gato/gato3.h>
+// #include <gato/gato4.h>
+// #include <gato/gato5.h>
+
+// // Defina os pinos para os servos
+// const int pinOlho = 10;     //gato 
+// const int pinBoca = 9;      //gato 
+// const int pinPescoco = 11;  //gato 
+
+#include <celeste/celeste1.h>
+#include <celeste/celeste2.h>
+#include <celeste/celeste3.h>
+#include <celeste/celeste4.h>
+#include <celeste/celeste5.h>
 
 // Defina os pinos para os servos
-const int pinOlho = 9;
-const int pinBoca = 11;
-const int pinPescoco = 10;
+const int pinOlho = 10;     //celeste
+const int pinBoca = 9;      //celeste
+const int pinPescoco = 11;  //celeste
+
+const int num_cena = 5;
+const int delay_cena = 15000;
+const int angulos_default[3] = {50,90,90};
 
 Servo olho;
 Servo boca;
@@ -27,138 +51,131 @@ static const uint8_t busyPin = 7; // The pin number of the busy pin.
 
 WTV020SD16P wtv020sd16p(resetPin, clockPin,dataPin,busyPin);
 
-int n, t = 0;
+int n, t, cena = 0;
+
+int nframes, millis_frames=0;
+
+int anguloBoca = angulos_default[0];
+int anguloOlho = angulos_default[1];
+int anguloPescoco = angulos_default[2];
 
 void setup() 
 {
   wtv020sd16p.reset();
-  // Serial.begin(9600);
-  delay(2000);
+  Serial.begin(9600);
+  Serial.println("Inicializando");
+  delay(1000);
   wtv020sd16p.asyncPlayVoice(0);
   // Inicialize os servos
   olho.attach(pinOlho);
   boca.attach(pinBoca);
   pescoco.attach(pinPescoco);
   delay(10);
-  boca.write(50); //50 fechado 80 aberto
-  olho.write(90);  //85 aberto 130 fechado
-  pescoco.write(90); //50 esquerda 130 direita 90 centro
-  // delay(5000);
+  boca.write(35); // celeste 35  fechado 75 aberto              |  Gato 60  fechado 100 aberto             |  Porteiro: 50 fechado 80 aberto
+  olho.write(70);  //celeste 110 fechado 70 aberto              |  Gato 121 fechado 87 aberto              |  Porteiro:85 aberto 130 fechado
+  pescoco.write(85); // celeste 60  esquerda 110 direita 85 centro | Gato 45  esquerda 125 direita 80 centro  |  Porteiro:50 esquerda 130 direita 90 centro
+  delay(5000);
   
 }
-
 void loop() {
-  wtv020sd16p.asyncPlayVoice(1);
-  // delay(10);
-  for (n=0; n < nFrames1; n++)
-  {
-      t = millis();
-      int anguloBoca = pgm_read_word(&frames1[n][0]);
-      int anguloOlho = pgm_read_word(&frames1[n][1]);
-      int anguloPescoco = pgm_read_word(&frames1[n][2]);
-
-      // Mova os servos para as posições corretas
-      boca.write(anguloBoca);
-      olho.write(anguloOlho);
-      pescoco.write(anguloPescoco);
-      // Aguarde um tempo (opcional) para que os servos alcancem as posições
-      delay(millis_frames1);
-      n++;
-  }
-  // wtv020sd16p.asyncPlayVoice(0);
-  delay(10000);
-  
-  wtv020sd16p.asyncPlayVoice(2);
-  for (n=0; n < nFrames2; n++)
-  {
-      t = millis();
-      int anguloBoca = pgm_read_word(&frames2[n][0]);
-      int anguloOlho = pgm_read_word(&frames2[n][1]);
-      int anguloPescoco = pgm_read_word(&frames2[n][2]);
-
-      // Mova os servos para as posições corretas
-      boca.write(anguloBoca);
-      olho.write(anguloOlho);
-      pescoco.write(anguloPescoco);
-      // Aguarde um tempo (opcional) para que os servos alcancem as posições
-      delay(millis_frames2+1.2);
-      n++;
-  }
-  // wtv020sd16p.asyncPlayVoice(0);
-  delay(10000);
-  
-  wtv020sd16p.asyncPlayVoice(3);
-  for (n=0; n < nFrames3; n++)
-  {
-      t = millis();
-      int anguloBoca = pgm_read_word(&frames3[n][0]);
-      int anguloOlho = pgm_read_word(&frames3[n][1]);
-      int anguloPescoco = pgm_read_word(&frames3[n][2]);
-
-      // Mova os servos para as posições corretas
-      boca.write(anguloBoca);
-      olho.write(anguloOlho);
-      pescoco.write(anguloPescoco);
-      // Aguarde um tempo (opcional) para que os servos alcancem as posições
-      delay(millis_frames3+1.2);
-      n++;
-  }
-  // wtv020sd16p.asyncPlayVoice(0);
-  delay(10000);
-  
-  wtv020sd16p.asyncPlayVoice(4);
-  for (n=0; n < nFrames4; n++)
-  {
-      t = millis();
-      int anguloBoca = pgm_read_word(&frames4[n][0]);
-      int anguloOlho = pgm_read_word(&frames4[n][1]);
-      int anguloPescoco = pgm_read_word(&frames4[n][2]);
-
-      // Mova os servos para as posições corretas
-      boca.write(anguloBoca);
-      olho.write(anguloOlho);
-      pescoco.write(anguloPescoco);
-      // Aguarde um tempo (opcional) para que os servos alcancem as posições
-      delay(millis_frames4+1.2);
-      n++;
-  }
-  // wtv020sd16p.asyncPlayVoice(0);
-  delay(10000);
-  
-  wtv020sd16p.asyncPlayVoice(5);
-  for (n=0; n < nFrames5; n++)
-  {
-      t = millis();
-      int anguloBoca = pgm_read_word(&frames5[n][0]);
-      int anguloOlho = pgm_read_word(&frames5[n][1]);
-      int anguloPescoco = pgm_read_word(&frames5[n][2]);
-
-      // Mova os servos para as posições corretas
-      boca.write(anguloBoca);
-      olho.write(anguloOlho);
-      pescoco.write(anguloPescoco);
-      // Aguarde um tempo (opcional) para que os servos alcancem as posições
-      delay(millis_frames5+1.2);
-      n++;
-  }
-  // wtv020sd16p.asyncPlayVoice(0);
-  delay(10000);
-  
-  wtv020sd16p.asyncPlayVoice(6);
-  for (n=0; n < nFrames6; n++)
-  {
-      t = millis();
-      int anguloBoca = pgm_read_word(&frames6[n][0]);
-      int anguloOlho = pgm_read_word(&frames6[n][1]);
-      int anguloPescoco = pgm_read_word(&frames6[n][2]);
-
-      // Mova os servos para as posições corretas
-      boca.write(anguloBoca);
-      olho.write(anguloOlho);
-      pescoco.write(anguloPescoco);
-      // Aguarde um tempo (opcional) para que os servos alcancem as posições
-      delay(millis_frames6+1.2);
-      n++;
-  }
-  delay(10000);
+    for( cena = 1;cena<=num_cena;cena++)
+    {   
+        // cena = 5;
+        switch (cena)
+        {
+        case 1:
+            nframes = nFrames1;
+            millis_frames = millis_frames1;
+            break;
+        case 2:
+            nframes = nFrames2;
+            millis_frames = millis_frames2;
+            break;
+        case 3:
+            nframes = nFrames3;
+            millis_frames = millis_frames3;
+            break;
+        case 4:
+            nframes = nFrames4;
+            millis_frames = millis_frames4;
+            break;
+        case 5:
+            nframes = nFrames5;
+            millis_frames = millis_frames5;
+            break;
+        // case 6:
+        //     nframes = nFrames6;
+        //     millis_frames = millis_frames6;
+        //     break;
+        
+        default:
+            break;
+        }
+        
+        wtv020sd16p.asyncPlayVoice(cena);
+        // delay(10);
+        t=millis();
+        for (n=0; n < nframes; n++)
+        {
+            // Serial.println(millis()-t);
+            // t = millis();
+            switch (cena)
+            {
+            case 1:
+                anguloBoca = pgm_read_word(&frames1[n][0]);
+                anguloOlho = pgm_read_word(&frames1[n][1]);
+                anguloPescoco = pgm_read_word(&frames1[n][2]);
+                break;
+            case 2:
+                anguloBoca = pgm_read_word(&frames2[n][0]);
+                anguloOlho = pgm_read_word(&frames2[n][1]);
+                anguloPescoco = pgm_read_word(&frames2[n][2]);
+                break;
+            case 3:
+                anguloBoca = pgm_read_word(&frames3[n][0]);
+                anguloOlho = pgm_read_word(&frames3[n][1]);
+                anguloPescoco = pgm_read_word(&frames3[n][2]);
+                break;
+            case 4:
+                anguloBoca = pgm_read_word(&frames4[n][0]);
+                anguloOlho = pgm_read_word(&frames4[n][1]);
+                anguloPescoco = pgm_read_word(&frames4[n][2]);
+                break;
+            case 5:
+                anguloBoca = pgm_read_word(&frames5[n][0]);
+                anguloOlho = pgm_read_word(&frames5[n][1]);
+                anguloPescoco = pgm_read_word(&frames5[n][2]);
+                break;
+            // case 6:
+            //     anguloBoca = pgm_read_word(&frames6[n][0]);
+            //     anguloOlho = pgm_read_word(&frames6[n][1]);
+            //     anguloPescoco = pgm_read_word(&frames6[n][2]);
+            //     break;
+            
+            default:
+                anguloBoca = angulos_default[0];
+                anguloOlho = angulos_default[1];
+                anguloPescoco = angulos_default[2];
+                break;
+            }
+            // Mova os servos para as posições corretas
+            boca.write(anguloBoca);
+            olho.write(anguloOlho);
+            pescoco.write(anguloPescoco);
+            // Aguarde um tempo (opcional) para que os servos alcancem as posições
+            delay(millis_frames);
+        }
+        
+        Serial.println(millis()-t);
+        Serial.print("Scene: ");
+        Serial.print(cena);
+        Serial.print(" - frames: ");
+        Serial.print(n);
+        Serial.print(" - Millis: ");
+        Serial.println(millis_frames);
+        delay(1000);
+        wtv020sd16p.asyncPlayVoice(0);
+        delay(delay_cena);
+    }
 }
+
