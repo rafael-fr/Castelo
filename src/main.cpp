@@ -46,31 +46,31 @@
 // const int angulos_default[3] = {60,87,90};
 
 
-#include <celeste/celeste1.h>
-#include <celeste/celeste2.h>
-#include <celeste/celeste3.h>
-#include <celeste/celeste4.h>
-#include <celeste/celeste5.h>
+// #include <celeste/celeste1.h>
+// #include <celeste/celeste2.h>
+// #include <celeste/celeste3.h>
+// #include <celeste/celeste4.h>
+// #include <celeste/celeste5.h>
 
-// Defina os pinos para os servos
-const int pinOlho = 10;     //celeste
-const int pinBoca = 9;      //celeste
-const int pinPescoco = 11;  //celeste
-
-const int angulos_default[3] = {5,90,80};
-
-// #include <celeste2/celeste1.h>
-// #include <celeste2/celeste2.h>
-// #include <celeste2/celeste3.h>
-// #include <celeste2/celeste4.h>
-// #include <celeste2/celeste5.h>
-
-// // // Defina os pinos para os servos
+// // Defina os pinos para os servos
 // const int pinOlho = 10;     //celeste
 // const int pinBoca = 9;      //celeste
 // const int pinPescoco = 11;  //celeste
 
-// const int angulos_default[3] = {170,125,85}; // BOCA - OLHO - PESCOCO
+// const int angulos_default[3] = {5,90,80};
+
+#include <celeste2/celeste1.h>
+#include <celeste2/celeste2.h>
+#include <celeste2/celeste3.h>
+#include <celeste2/celeste4.h>
+#include <celeste2/celeste5.h>
+
+// // Defina os pinos para os servos
+const int pinOlho = 10;     //celeste
+const int pinBoca = 9;      //celeste
+const int pinPescoco = 11;  //celeste
+
+const int angulos_default[3] = {170,125,85}; // BOCA - OLHO - PESCOCO
 
 const int num_cena = 5;
 const int delay_cena = 15000;
