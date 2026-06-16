@@ -132,7 +132,7 @@ void setup()
   pescoco.attach(pinPescoco);
   delay(10);
   for (int i = 0; i < 75; i++) {
-    boca.write(angulos_default[i]);
+    boca.write(i);
     delay(500);
   }
   boca.write(angulos_default[0]);    // celeste 170  fechado 120 aberto              |celeste 35  fechado 75 aberto              |  Gato 60  fechado 100 aberto             |  Porteiro: 50 fechado 80 aberto
