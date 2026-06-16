@@ -131,6 +131,10 @@ void setup()
   olho.attach(pinOlho);
   pescoco.attach(pinPescoco);
   delay(10);
+  for (int i = 0; i < 75; i++) {
+    boca.write(angulos_default[i]);
+    delay(500);
+  }
   boca.write(angulos_default[0]);    // celeste 170  fechado 120 aberto              |celeste 35  fechado 75 aberto              |  Gato 60  fechado 100 aberto             |  Porteiro: 50 fechado 80 aberto
   olho.write(angulos_default[1]);     //celeste 150 fechado 125 aberto              |celeste 110 fechado 70 aberto              |  Gato 121 fechado 87 aberto              |  Porteiro:85 aberto 130 fechado
   pescoco.write(angulos_default[2]); // celeste 50  esquerda 130 direita 85 centro |celeste 60  esquerda 110 direita 85 centro | Gato 45  esquerda 125 direita 80 centro  |  Porteiro:50 esquerda 130 direita 90 centro
