@@ -72,7 +72,7 @@ const int angulos_default[3] = {50,90,90};
 
 // const int angulos_default[3] = {170,125,85}; // BOCA - OLHO - PESCOCO
 
-const int num_cena =4;
+const int num_cena =6;
 const int delay_cena = 15000;
 
 Servo olho;
