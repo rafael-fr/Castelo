@@ -57,7 +57,7 @@ const int pinOlho = 10;     //celeste
 const int pinBoca = 9;      //celeste
 const int pinPescoco = 11;  //celeste
 
-const int angulos_default[3] = {40,90,80};
+const int angulos_default[3] = {20,90,80};
 
 // #include <celeste2/celeste1.h>
 // #include <celeste2/celeste2.h>
