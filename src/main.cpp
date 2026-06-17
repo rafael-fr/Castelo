@@ -57,7 +57,7 @@ const int pinOlho = 10;     //celeste
 const int pinBoca = 9;      //celeste
 const int pinPescoco = 11;  //celeste
 
-const int angulos_default[3] = {40,90,80};
+const int angulos_default[3] = {50,80,80};
 
 // #include <celeste2/celeste1.h>
 // #include <celeste2/celeste2.h>
@@ -140,7 +140,8 @@ void setup()
 void loop() {
     for( cena = 1;cena<=num_cena;cena++)
     {   
-        // cena = 5;
+        if (cena == 4){cena=5;};
+        // cena = 4;
         Serial.println("Cena: " + String(cena));
         switch (cena)
         {
@@ -221,13 +222,21 @@ void loop() {
                 anguloPescoco = angulos_default[2];
                 break;
             }
+            // anguloBoca = angulos_default[0];
+            // anguloOlho = angulos_default[1];
+            // anguloPescoco = angulos_default[2];
             // Mova os servos para as posições corretas
             boca.write(anguloBoca);
             olho.write(anguloOlho);
             pescoco.write(anguloPescoco);
+            // Serial.println("Frame: " + String(n) + " - Boca: " + String(anguloBoca) + " - Olho: " + String(anguloOlho) + " - Pescoco: " + String(anguloPescoco));
             // Aguarde um tempo (opcional) para que os servos alcancem as posições
             delay(millis_frames);
         }
+        boca.write(angulos_default[0]);    // celeste 170  fechado 120 aberto              |celeste 35  fechado 75 aberto              |  Gato 60  fechado 100 aberto             |  Porteiro: 50 fechado 80 aberto
+        olho.write(angulos_default[1]);     //celeste 150 fechado 125 aberto              |celeste 110 fechado 70 aberto              |  Gato 121 fechado 87 aberto              |  Porteiro:85 aberto 130 fechado
+        pescoco.write(angulos_default[2]); // celeste 50  esquerda 130 direita 85 centro |celeste 60  esquerda 110 direita 85 centro | Gato 45  esquerda 125 direita 80 centro  |  Porteiro:50 esquerda 130 direita 90 centro
+  
         
         // Serial.println(millis()-t);
         // Serial.print("Scene: ");
@@ -239,8 +248,8 @@ void loop() {
         // delay(5000);
         
         // ===== WTV020SD16P stop (opcional) =====
-        wtv020sd16p.stopVoice();
-        
+        // wtv020sd16p.stopVoice();
+        wtv020sd16p.asyncPlayVoice(0);
         delay(delay_cena);
     }
     // delay(100);
