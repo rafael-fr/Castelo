@@ -1,9 +1,16 @@
 #include <Arduino.h>
 #include <Servo.h>
+#include <avr/wdt.h>
 // #include <WTV020SD16P.h>
 
 #include <DFRobotDFPlayerMini.h>
 #include <SoftwareSerial.h>
+
+// Reset por software usando o watchdog timer
+void resetArduino() {
+  wdt_enable(WDTO_15MS);
+  while (1) {} // aguarda o watchdog reiniciar o Arduino
+}
 
 // #include <porteiro/porteiro1.h>
 // #include <porteiro/porteiro2.h>
@@ -243,6 +250,10 @@ void loop() {
         
         delay(delay_cena);
     }
+    // Reinicia o Arduino apos a ultima cena
+    Serial.println("Ultima cena concluida. Reiniciando...");
+    delay(50);
+    resetArduino();
     // delay(100);
 }
 
