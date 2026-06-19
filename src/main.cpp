@@ -5,18 +5,18 @@
 #include <DFRobotDFPlayerMini.h>
 #include <SoftwareSerial.h>
 
-#include <porteiro/porteiro1.h>
-#include <porteiro/porteiro2.h>
-#include <porteiro/porteiro3.h>
-#include <porteiro/porteiro4.h>
-#include <porteiro/porteiro5.h>
-#include <porteiro/porteiro6.h>
-// // Defina os pinos para os servos
-const int pinOlho = 11;     //porteiro 
-const int pinBoca = 9;    //porteiro 
-const int pinPescoco = 10; //porteiro 
+// #include <porteiro/porteiro1.h>
+// #include <porteiro/porteiro2.h>
+// #include <porteiro/porteiro3.h>
+// #include <porteiro/porteiro4.h>
+// #include <porteiro/porteiro5.h>
+// #include <porteiro/porteiro6.h>
+// // // Defina os pinos para os servos
+// const int pinOlho = 11;     //porteiro 
+// const int pinBoca = 9;    //porteiro 
+// const int pinPescoco = 10; //porteiro 
 
-const int angulos_default[3] = {50,90,90};
+// const int angulos_default[3] = {50,90,90};
 
 // #include <porteiro2/porteiro1.h>
 // #include <porteiro2/porteiro2.h>
@@ -32,18 +32,18 @@ const int angulos_default[3] = {50,90,90};
 
 // const int angulos_default[3] = {130,120,115}; // BOCA - OLHO - PESCOCO
 
-// #include <gato/gato1.h>
-// #include <gato/gato2.h>
-// #include <gato/gato3.h>
-// #include <gato/gato4.h>
-// // #include <gato/gato5.h>
+#include <gato/gato1.h>
+#include <gato/gato2.h>
+#include <gato/gato3.h>
+#include <gato/gato4.h>
+// #include <gato/gato5.h>
 
-// // Defina os pinos para os servos
-// const int pinOlho = 11;     //gato 
-// const int pinBoca = 10;      //gato 
-// const int pinPescoco = 9;  //gato 
+// Defina os pinos para os servos
+const int pinOlho = 11;     //gato 
+const int pinBoca = 10;      //gato 
+const int pinPescoco = 9;  //gato 
 
-// const int angulos_default[3] = {60,87,90};
+const int angulos_default[3] = {60,87,90};
 
 
 // #include <celeste/celeste1.h>
@@ -72,7 +72,7 @@ const int angulos_default[3] = {50,90,90};
 
 // const int angulos_default[3] = {170,125,85}; // BOCA - OLHO - PESCOCO
 
-const int num_cena =6;
+const int num_cena =5;
 const int delay_cena = 15000;
 
 Servo olho;
@@ -134,7 +134,7 @@ void setup()
   boca.write(angulos_default[0]);    // celeste 170  fechado 120 aberto              |celeste 35  fechado 75 aberto              |  Gato 60  fechado 100 aberto             |  Porteiro: 50 fechado 80 aberto
   olho.write(angulos_default[1]);     //celeste 150 fechado 125 aberto              |celeste 110 fechado 70 aberto              |  Gato 121 fechado 87 aberto              |  Porteiro:85 aberto 130 fechado
   pescoco.write(angulos_default[2]); // celeste 50  esquerda 130 direita 85 centro |celeste 60  esquerda 110 direita 85 centro | Gato 45  esquerda 125 direita 80 centro  |  Porteiro:50 esquerda 130 direita 90 centro
-  delay(5000);
+  delay(delay_cena);
 
 }
 void loop() {
