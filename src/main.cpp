@@ -18,19 +18,19 @@
 
 // const int angulos_default[3] = {50,90,90};
 
-// #include <porteiro2/porteiro1.h>
-// #include <porteiro2/porteiro2.h>
-// #include <porteiro2/porteiro3.h>
-// #include <porteiro2/porteiro4.h>
-// #include <porteiro2/porteiro5.h>
-// #include <porteiro2/porteiro6.h>
+#include <porteiro2/porteiro1.h>
+#include <porteiro2/porteiro2.h>
+#include <porteiro2/porteiro3.h>
+#include <porteiro2/porteiro4.h>
+#include <porteiro2/porteiro5.h>
+#include <porteiro2/porteiro6.h>
 
-// // // Defina os pinos para os servos
-// const int pinOlho = 9;     //porteiro 
-// const int pinBoca = 10;    //porteiro 
-// const int pinPescoco = 11; //porteiro 
+// // Defina os pinos para os servos
+const int pinOlho = 9;     //porteiro 
+const int pinBoca = 10;    //porteiro 
+const int pinPescoco = 11; //porteiro 
 
-// const int angulos_default[3] = {130,120,115}; // BOCA - OLHO - PESCOCO
+const int angulos_default[3] = {130,120,115}; // BOCA - OLHO - PESCOCO
 
 // #include <gato/gato1.h>
 // #include <gato/gato2.h>
@@ -46,18 +46,18 @@
 // const int angulos_default[3] = {60,87,90};
 
 
-#include <celeste/celeste1.h>
-#include <celeste/celeste2.h>
-#include <celeste/celeste3.h>
-#include <celeste/celeste4.h>
-#include <celeste/celeste5.h>
+// #include <celeste/celeste1.h>
+// #include <celeste/celeste2.h>
+// #include <celeste/celeste3.h>
+// #include <celeste/celeste4.h>
+// #include <celeste/celeste5.h>
 
-// Defina os pinos para os servos
-const int pinOlho = 10;     //celeste
-const int pinBoca = 9;      //celeste
-const int pinPescoco = 11;  //celeste
+// // Defina os pinos para os servos
+// const int pinOlho = 10;     //celeste
+// const int pinBoca = 9;      //celeste
+// const int pinPescoco = 11;  //celeste
 
-const int angulos_default[3] = {50,80,80};
+// const int angulos_default[3] = {50,80,80};
 
 // #include <celeste2/celeste1.h>
 // #include <celeste2/celeste2.h>
