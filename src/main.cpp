@@ -79,7 +79,7 @@ const int angulos_default[3] = {60,87,90};
 
 // const int angulos_default[3] = {170,125,85}; // BOCA - OLHO - PESCOCO
 
-const int num_cena =5;
+const int num_cena =4;
 const int delay_cena = 15000;
 
 Servo olho;
@@ -167,14 +167,14 @@ void loop() {
             nframes = nFrames4;
             millis_frames = millis_frames4;
             break;
-        case 5:
-            nframes = nFrames5;
-            millis_frames = millis_frames5;
-            break;
-        case 6:
-            nframes = nFrames6;
-            millis_frames = millis_frames6;
-            break;
+        // case 5:
+        //     nframes = nFrames5;
+        //     millis_frames = millis_frames5;
+        //     break;
+        // case 6:
+        //     nframes = nFrames6;
+        //     millis_frames = millis_frames6;
+        //     break;
         
         default:
             break;
@@ -211,16 +211,16 @@ void loop() {
                 anguloOlho = pgm_read_word(&frames4[n][1]);
                 anguloPescoco = pgm_read_word(&frames4[n][2]);
                 break;
-            case 5:
-                anguloBoca = pgm_read_word(&frames5[n][0]);
-                anguloOlho = pgm_read_word(&frames5[n][1]);
-                anguloPescoco = pgm_read_word(&frames5[n][2]);
-                break;
-            case 6:
-                anguloBoca = pgm_read_word(&frames6[n][0]);
-                anguloOlho = pgm_read_word(&frames6[n][1]);
-                anguloPescoco = pgm_read_word(&frames6[n][2]);
-                break;
+            // case 5:
+                // anguloBoca = pgm_read_word(&frames5[n][0]);
+                // anguloOlho = pgm_read_word(&frames5[n][1]);
+                // anguloPescoco = pgm_read_word(&frames5[n][2]);
+                // break;
+            // case 6:
+            //     anguloBoca = pgm_read_word(&frames6[n][0]);
+            //     anguloOlho = pgm_read_word(&frames6[n][1]);
+            //     anguloPescoco = pgm_read_word(&frames6[n][2]);
+            //     break;
             
             default:
                 anguloBoca = angulos_default[0];
