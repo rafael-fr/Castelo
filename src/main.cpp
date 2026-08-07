@@ -80,15 +80,15 @@ Servo boca;
 Servo pescoco;
 
 // ===== WTV020SD16P =====
-static const uint8_t resetPin = 4;   // The pin number of the reset pin.
-static const uint8_t clockPin = 5;   // The pin number of the clock pin.
-static const uint8_t dataPin = 6;    // The pin number of the data pin.
-static const uint8_t busyPin = 7;    // The pin number of the busy pin.
-WTV020SD16P wtv020sd16p(resetPin, clockPin, dataPin, busyPin);
+// static const uint8_t resetPin = 4;   // The pin number of the reset pin.
+// static const uint8_t clockPin = 5;   // The pin number of the clock pin.
+// static const uint8_t dataPin = 6;    // The pin number of the data pin.
+// static const uint8_t busyPin = 7;    // The pin number of the busy pin.
+// WTV020SD16P wtv020sd16p(resetPin, clockPin, dataPin, busyPin);
 
 // ===== DFPlayer Mini (Comentado) =====
-// SoftwareSerial mySoftwareSerial(3, 2); // RX, TX
-// DFRobotDFPlayerMini myDFPlayer;
+SoftwareSerial mySoftwareSerial(3, 2); // RX, TX
+DFRobotDFPlayerMini myDFPlayer;
 
 int n, t, cena = 0;
 
@@ -101,19 +101,19 @@ int anguloPescoco = angulos_default[2];
 void setup() 
 {
     // ===== WTV020SD16P Initialization =====
-    wtv020sd16p.reset();
+    // wtv020sd16p.reset();
   
   Serial.begin(9600);
   Serial.println("Inicializando");
   delay(1000);
   
     // ===== DFPlayer Mini Initialization (Comentado) =====
-    // mySoftwareSerial.begin(9600);
-    // if (!myDFPlayer.begin(mySoftwareSerial)) {
-    //   //Serial.println(F("DFPlayer Mini nao iniciou corretamente!"));
-    //   while(1);
-    // }
-    //Serial.println(F("DFPlayer Mini inicializado com sucesso"));
+    mySoftwareSerial.begin(9600);
+    if (!myDFPlayer.begin(mySoftwareSerial)) {
+      //Serial.println(F("DFPlayer Mini nao iniciou corretamente!"));
+      while(1);
+    }
+    Serial.println(F("DFPlayer Mini inicializado com sucesso"));
   
     // Configurações do DFPlayer (comentadas)
     // myDFPlayer.volume(25); // Define volume (0-30)
@@ -175,8 +175,8 @@ void loop() {
         }
         
         // ===== WTV020SD16P play =====
-        wtv020sd16p.asyncPlayVoice(cena);
-        
+        // wtv020sd16p.asyncPlayVoice(cena);
+        myDFPlayer.play(cena);
         // delay(10);
         t=millis();
         for (n=0; n < nframes; n++)
@@ -249,7 +249,7 @@ void loop() {
         
         // ===== WTV020SD16P stop (opcional) =====
         // wtv020sd16p.stopVoice();
-        wtv020sd16p.asyncPlayVoice(0);
+        // wtv020sd16p.asyncPlayVoice(0);
         delay(delay_cena);
     }
     // delay(100);
